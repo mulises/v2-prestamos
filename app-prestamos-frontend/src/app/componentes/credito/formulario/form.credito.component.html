@@ -1,0 +1,54 @@
+<section class="container" >
+  <div class="h3 text-center text-uppercase">{{cartera?.nombre}}</div>
+    <form [formGroup]="creditoForm">
+      <div class="container">
+        <mat-form-field class="full-width">
+          <input type="text"
+                 placeholder="Cliente"
+                 aria-label="Clientes"
+                 matInput
+                 formControlName="cliente"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="mostrarNombre" (optionSelected)="seleccionCliente($event)">
+            <mat-option *ngFor="let cliente of clientesFiltrados | async" [value]="cliente">
+              {{cliente.entidad.nombres}} {{cliente.entidad.apellidos}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        
+      </div>
+
+      <div class="row container">
+        <div class="col-md-4 col-6">
+          <mat-form-field class="full-width">
+            <mat-label>Monto Crédito</mat-label>
+            <input matInput type="number" placeholder="Monto" formControlName="montoPrestamo" (keyup)="calcularCuotas($event)">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 col-6">
+          <mat-form-field class="full-width">
+            <mat-label>Cantidad Cuotas</mat-label>
+            <input matInput type="number" placeholder="Cuotas" formControlName="cantidadCuota" (keyup)="calcularCuotas($event)">
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div class="row container">
+        <div class="col-md-4 col-6" *ngIf="creditoForm.controls.ampliacion.value">
+          <mat-form-field class="full-width">
+            <mat-label>Multa Ampliación</mat-label>
+            <input matInput type="number" placeholder="Multa" formControlName="multaAmpliacion" (keyup)="calcularCuotas($event)">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="alert alert-success" role="alert">
+        <strong>Valor Cuota:</strong>{{creditoForm.value.valorCuota}}
+      </div>
+      <input type="submit" class="btn btn-primary full-width" value="Crear Crédito" (click)="generarCredito()" [disabled]="!creditoForm.valid" *ngIf="!creditoForm.controls.ampliacion.value; else crearAmpliacionBlock">
+      <ng-template #crearAmpliacionBlock>
+        <input type="submit" class="btn btn-primary full-width" value="Ampliar Crédito" (click)="ampliarCredito()" [disabled]="!creditoForm.valid">
+      </ng-template>
+    </form>
+
+</section>
+        

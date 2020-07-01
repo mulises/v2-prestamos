@@ -1,0 +1,33 @@
+<section class="container">
+  <section class="row">
+    <div class="container col-12 col-md-6 " *ngFor="let cartera of carterasAsignadas">
+      <div class="card text-center my-2">
+        <div class="card-header">
+          {{cartera.nombre}}
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{cartera.descripcion}}</p>
+          <div class="d-flex justify-content-center">
+            <a [routerLink]="['/creditos/',cartera.id]" class="card-link">Deudores</a>
+            <a [routerLink]="['/cliente/',cartera.id]" class="card-link">(+) Cliente</a>
+            <a [routerLink]="['/form/credito',cartera.id]" class="card-link">Crédito</a>
+            <a [routerLink]="['/form/gasto',cartera.id]" class="card-link">Gasto</a>
+          </div>
+          
+        </div>
+        <div class="card-footer text-muted" *ngIf="authService.hasRole('ROLE_OPCION_CARTERA')">
+          <div class="btn-group dropup">
+            <button class="btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Mas Opciones
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" [routerLink]="['/form/cuadre',cartera.id]">Cuadre Caja</a>
+            </div>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" [routerLink]="['/form/cuadre',cartera.id]">Inf. Flujo de Caja</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+</section>

@@ -1,0 +1,66 @@
+<section class="container">
+
+  <div class="h3 text-center text-uppercase">{{cartera?.nombre}}</div>
+
+  <form [formGroup]="clienteForm">
+    
+    <div class="row container">
+      <div class="col-md-4 col-4">
+        <mat-form-field class="full-width">
+          <mat-label>Enrutamiento</mat-label>
+          <input matInput type="number" placeholder="Enrutamiento" formControlName="enrutamiento">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 col-8" formGroupName="entidad">
+        <mat-form-field class="full-width">
+          <mat-label>Identificación</mat-label>
+          <input matInput type="text" placeholder="# Cédula" (blur)="onBlurMethod()" formControlName="numeroIdentificacion">
+        </mat-form-field>
+      </div>  
+    </div>
+    
+    <div class="row container" formGroupName="entidad">
+      <div class="col-md-4 col-6">
+        <mat-form-field class="full-width">
+          <mat-label>Nombres</mat-label>
+          <input matInput type="text" class="text-capitalize" placeholder="Nombre" formControlName="nombres">
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 col-6">
+        <mat-form-field class="full-width">
+          <mat-label>Apellidos</mat-label>
+          <input matInput type="text" class="text-capitalize" placeholder="Apellido" formControlName="apellidos">
+        </mat-form-field>
+      </div>
+    </div>
+    
+    <div class="row container">
+      <div class="col-md-4 col-12" formGroupName="entidad">
+        <mat-form-field class="full-width">
+          <mat-label>Teléfono</mat-label>
+          <input matInput type="text" placeholder="Telefono" formControlName="telefono">
+        </mat-form-field>
+      </div>
+      
+      <div class="col-md-4 col-12" formGroupName="entidad">
+        <mat-form-field class="full-width">
+          <mat-label>Dirección</mat-label>
+          <input matInput type="text" placeholder="Dirección" formControlName="direccion">
+        </mat-form-field>
+      </div>            
+    </div>
+
+    <div class="row container">
+      <div class="col-md-4 col-12">
+        <mat-checkbox color="primary" formControlName="activo">Activo</mat-checkbox>
+      </div>
+      
+    </div>   
+    
+    <input type="submit" class="btn btn-primary full-width" value="Crear Cliente" (click)="crearCliente()" [disabled]="!clienteForm.valid" *ngIf="!clienteForm.controls.id.value; else editarClienteBlock">
+    <ng-template #editarClienteBlock >
+      <input type="submit" class="btn btn-primary full-width" value="Editar Cliente" (click)="editarCliente()" [disabled]="!clienteForm.valid">
+    </ng-template>
+  </form>
+</section>

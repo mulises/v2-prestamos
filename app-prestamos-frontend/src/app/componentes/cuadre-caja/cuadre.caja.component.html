@@ -1,0 +1,106 @@
+<section class="container" *ngIf="cuadreForm.controls.cartera.value; else blockSinRutaSeleccionada">
+  
+  <h1 class="text-center" >{{cuadreForm.controls.cartera.get('nombre').value}}</h1>
+  <br>
+    <form [formGroup]="cuadreForm">
+        <div class="row container mb-2">
+            <div class="col-6 col-md-2">
+              <mat-form-field class="full-width">
+                <mat-label>Base</mat-label>
+                <input matInput type="text" placeholder="Valor Base" formControlName="valorBase">
+              </mat-form-field>
+            </div>
+
+            <div class="col-6 col-md-2 ">
+                <mat-label>Confirmar</mat-label><br>
+                <mat-checkbox color="primary" formControlName="confirmado"></mat-checkbox>
+            </div>
+            
+      
+            <div class="col-12 col-md-5">
+                <input type="submit" class="btn btn-primary full-width" value="Iniciar Cuadre" (click)="crearCuadre()" [disabled]="!cuadreForm.valid" *ngIf="!cuadreForm.controls.id.value; else blockBotonGuardar">
+            </div>  
+        </div>
+    </form>
+
+    <br>
+
+    <section class="container" *ngIf="cuadreForm.controls.id.value; else blockEmpyCuadre">
+      <div class="row container mb-1">
+        <div class="col-md-4 col-6">
+            <div>
+              <strong>
+                Fecha Inicio: 
+              </strong>
+              {{cuadreForm.controls.fechaCreacion.value | date:'d/M/yyyy, h:mm a'}}
+            </div>
+        </div>
+        <div class="col-md-4 col-6">
+            <div>
+              <strong>
+                Fecha Confirmación: 
+              </strong>
+              {{cuadreForm.controls.fechaConfirmacion.value | date:'d/M/yyyy, h:mm a'}}
+            </div>
+        </div>
+        <div class="alert alert-success text-center full-width my-3" role="alert">
+          <strong>Debe Haber: </strong> 
+          {{(+cuadreForm.controls.valorBase.value + cuadreForm.controls.totalRecaudo.value + cuadreForm.controls.totalMulta.value) 
+            - 
+            (cuadreForm.controls.totalPrestado.value + cuadreForm.controls.totalGasto.value)
+            | currency:'':'symbol':'1.0-0'
+          }}
+        </div>    
+      </div>
+      <div class="card-group row ">
+        <div class="card col-6 col-md-4 col-lg-3 bg-light text-center">
+          <div class="card-header">
+            Recaudado
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{cuadreForm.controls.totalRecaudo.value | currency : '':'symbol' : '1.0-0'}}</p>
+          </div>
+        </div>
+        <div class="card col-6 col-md-4 col-lg-3 bg-light text-center">
+          <div class="card-header">
+            Multas
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{cuadreForm.controls.totalMulta.value | currency : '':'symbol' : '1.0-0'}}</p>
+          </div>
+        </div>
+        <div class="card col-6 col-md-4 col-lg-3 bg-light text-center">
+          <div class="card-header">
+            Prestamos
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{cuadreForm.controls.totalPrestado.value | currency : '':'symbol' : '1.0-0'}}</p>
+          </div>
+        </div>
+        <div class="card col-6 col-md-4 col-lg-3 bg-light text-center">
+          <div class="card-header">
+             Gastos
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{cuadreForm.controls.totalGasto.value | currency : '':'symbol' : '1.0-0'}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-group row my-md-2">
+        <div class="btn btn-primary" (click)="descargarInforme()"> ver informe</div>
+      </div>
+    </section>
+      
+
+    <ng-template #blockEmpyCuadre>
+        <h1>No hay Cuadre activo para esta cartera</h1>
+    </ng-template>
+
+    <ng-template #blockBotonGuardar>
+      <input type="submit" class="btn btn-primary full-width" value="Editar Cuadre" (click)="editarCuadre()" [disabled]="!cuadreForm.valid">
+    </ng-template>
+</section>
+
+<ng-template #blockSinRutaSeleccionada>
+  <h1>Cargando...</h1>
+</ng-template>

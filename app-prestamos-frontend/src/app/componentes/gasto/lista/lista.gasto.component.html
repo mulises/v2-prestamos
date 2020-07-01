@@ -1,0 +1,20 @@
+<section class="container">
+    <mat-card>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Descripción</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Editar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let gasto of listaGasto">
+                <td>{{gasto.descripcion}}</td>
+                <td>{{gasto.valorGasto | currency:'':'symbol':'1.0-0'}}</td>
+                <td>@mdo</td>
+              </tr>
+            </tbody>
+          </table>
+    </mat-card>
+</section>
