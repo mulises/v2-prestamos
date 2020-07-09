@@ -10,6 +10,7 @@ import { FormGastoComponent } from './componentes/gasto/formulario/form.gasto/fo
 import { ListaGastoComponent } from './componentes/gasto/lista/lista.gasto.component';
 import { CuadreCajaComponent } from './componentes/cuadre-caja/cuadre.caja.component';
 import { ValidarCuadreActivoGuard } from './guards/validar.cuadre.guard';
+import { InfoFlujoCajaCarteraComponent } from './componentes/informes/flujo-caja-cartera/info.flujo.caja.cartera.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path:'cliente/:idCartera', component: FormClienteComponent, canActivate:[AuthGuard]},
   { path:'form/gasto/:idCartera', component: FormGastoComponent, canActivate:[AuthGuard,ValidarCuadreActivoGuard]},
   { path:'lista/gasto/:idCartera', component: ListaGastoComponent, canActivate:[AuthGuard]},
-  { path:'form/cuadre/:idCartera', component: CuadreCajaComponent, canActivate:[AuthGuard]}  
+  { path:'form/cuadre/:idCartera', component: CuadreCajaComponent, canActivate:[AuthGuard]} ,
+  { path:'form/info-flujo-caja/:idCartera', component: InfoFlujoCajaCarteraComponent, canActivate:[AuthGuard], data:{role:'ROLE_INF_FLUJO_CAJA'}}
 ];
 
 @NgModule({

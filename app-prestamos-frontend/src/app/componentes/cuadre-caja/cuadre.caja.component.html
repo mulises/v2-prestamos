@@ -45,7 +45,7 @@
         </div>
         <div class="alert alert-success text-center full-width my-3" role="alert">
           <strong>Debe Haber: </strong> 
-          {{(+cuadreForm.controls.valorBase.value + cuadreForm.controls.totalRecaudo.value + cuadreForm.controls.totalMulta.value) 
+          {{(+cuadreForm.controls.valorBase.value + cuadreForm.controls.totalRecaudado.value + cuadreForm.controls.totalMulta.value) 
             - 
             (cuadreForm.controls.totalPrestado.value + cuadreForm.controls.totalGasto.value)
             | currency:'':'symbol':'1.0-0'
@@ -58,12 +58,12 @@
             Recaudado
           </div>
           <div class="card-body">
-            <p class="card-text">{{cuadreForm.controls.totalRecaudo.value | currency : '':'symbol' : '1.0-0'}}</p>
+            <p class="card-text">{{cuadreForm.controls.totalRecaudado.value | currency : '':'symbol' : '1.0-0'}}</p>
           </div>
         </div>
         <div class="card col-6 col-md-4 col-lg-3 bg-light text-center">
           <div class="card-header">
-            Multas
+            Abono Ampliación
           </div>
           <div class="card-body">
             <p class="card-text">{{cuadreForm.controls.totalMulta.value | currency : '':'symbol' : '1.0-0'}}</p>

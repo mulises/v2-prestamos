@@ -30,4 +30,12 @@ export class CuadreCajaService {
       responseType: 'arraybuffer'
     });
   }
+
+  informeFlujoCaja(nombreArchivo: string,idCuadre: number) {
+    let REQUEST_PARAMS = new HttpParams().set('fileName',nombreArchivo)
+    return this.http.get(environment.urlEndPointApi + "/api-prestamos/cuadaily/flujo-caja/"+idCuadre,{
+      params: REQUEST_PARAMS,
+      responseType: 'arraybuffer'
+    });
+  }
 }

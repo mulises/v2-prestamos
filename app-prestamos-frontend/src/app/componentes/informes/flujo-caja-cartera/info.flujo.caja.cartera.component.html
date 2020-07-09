@@ -1,1 +1,14 @@
-<p>info.flujo.caja.cartera works!</p>
+<section class="container">
+    <div class="card" *ngIf="cartera">
+        <div class="card-header text-center">
+            <h3>Informe Flujo de Caja: {{cartera.nombre}}</h3>
+        </div>
+        <div class="card-body">
+            <ul>
+                
+            </ul>
+
+            <input type="submit" class="btn btn-primary full-width" (click)="descargarFlujoDeCaja()" value="Descargar...">
+        </div>
+    </div>
+</section>

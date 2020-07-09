@@ -29,8 +29,7 @@ export class CuadreCajaComponent implements OnInit {
       carteraParam = cartera;
       if(idCartera) {
         this.cuadreService.cuadreCajaActivo(+idCartera).subscribe(cuadreActivo =>{
-          this.cuadreForm.setValue(cuadreActivo);
-          
+          this.cuadreForm.setValue(cuadreActivo);          
         },
         err =>{
           console.log(carteraParam)
@@ -78,7 +77,7 @@ export class CuadreCajaComponent implements OnInit {
       id:null,
       valorBase:['',Validators.required],
       fechaCreacion:({value:'',disabled:true}),
-      totalRecaudo:'',
+      totalRecaudado:'',
       totalPrestado:'',
       confirmado:false,
       observaciones:'',

@@ -5,3 +5,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .btn.disabled, .btn:disabled {
     opacity: .45;
 }
+
+.full-width {
+    width: 100%;
+}
