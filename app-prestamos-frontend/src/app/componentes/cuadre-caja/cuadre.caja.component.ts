@@ -5,7 +5,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CuadreCaja } from 'src/app/entidades/cuadre.caja';
 import { CarteraService } from 'src/app/servicios/cartera/cartera.service';
 import Swal from 'sweetalert2';
-import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-cuadre.caja',
@@ -32,12 +31,10 @@ export class CuadreCajaComponent implements OnInit {
           this.cuadreForm.setValue(cuadreActivo);          
         },
         err =>{
-          console.log(carteraParam)
           this.cuadreForm.controls.cartera.get('id').setValue(carteraParam.id);
           this.cuadreForm.controls.cartera.get('nombre').setValue(carteraParam.nombre);
           this.cuadreForm.controls.cartera.get('descripcion').setValue(carteraParam.descripcion);
           this.cuadreForm.controls.cartera.get('porcentajePrestamo').setValue(carteraParam.porcentajePrestamo);
-          console.log(this.cuadreForm.controls.cartera.get('nombre').value)
         });
       }
     })
@@ -47,27 +44,14 @@ export class CuadreCajaComponent implements OnInit {
 
   crearCuadre(): void {
     this.cuadreService.crearCuadreCaja(this.cuadreForm.value as CuadreCaja).subscribe(cuadreCreado => {
-      console.log(cuadreCreado)
       this.cuadreForm.setValue(cuadreCreado)
       Swal.fire('Cuadre Confirmado','','success');
     });
   }
 
   editarCuadre(): void {
-    console.log(this.cuadreForm.controls)
     this.cuadreService.actualizarCuadreCaja(this.cuadreForm.value as CuadreCaja).subscribe(cuadreActualizado => {
-      console.log(cuadreActualizado);
       Swal.fire('Cuadre Editado','Se ha modificado el valor base','success');
-    });
-  }
-
-  descargarInforme(): void {
-    
-    this.cuadreService.descargar('nombreArchivo_frontend.xls',this.cuadreForm.controls.id.value).subscribe(data => {
-
-      //let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-      saveAs(new Blob([data], {type:'application/vnd.ms-excel'}), 'nombreArchivo_frontend.xls');
-    
     });
   }
 
