@@ -1,0 +1,25 @@
+<section class="container">
+    
+    <mat-card class="my-2">
+        <p class="h6 text-center mb-2" *ngIf="cuadreCaja">LISTADO DE PAGOS {{cuadreCaja.cartera.nombre}}</p>
+        <table class="table table-sm table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Fecha</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Valor Pago</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pagoCliente of listaPagos">
+                <td>{{pagoCliente.fechaPago | date:'d/MM/yyyy hh:mm'}}</td>
+                <td>{{pagoCliente.prestamo.cliente.entidad.nombres}}</td>
+                <td>{{pagoCliente.valorPago | currency:'':'symbol':'0.0'}}</td>
+                <td><a (click)="eliminarPago(pagoCliente)" class="card-link text-info">eliminar</a></td>
+              </tr>
+              
+            </tbody>
+          </table>
+    </mat-card>
+</section>

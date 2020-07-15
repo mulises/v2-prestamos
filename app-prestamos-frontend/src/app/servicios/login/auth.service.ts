@@ -120,6 +120,10 @@ export class AuthService {
     return false;
   }
 
+  /**
+   * Retorna el cuadre de caja activo para una cartera
+   * @param idCartera 
+   */
   existeCuadreactivo(idCartera: number):  Observable<CuadreCaja> {
     return this.http.get<CuadreCaja>(environment.urlEndPointApi + `/api-prestamos/cuadaily/cuadre-activo-cartera/${idCartera}`);  
   }

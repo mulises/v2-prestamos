@@ -9,6 +9,7 @@
           <p class="card-text">{{cartera.descripcion}}</p>
           <div class="d-flex justify-content-center">
             <a [routerLink]="['/creditos/',cartera.id]" class="card-link">Deudores</a>
+            <a [routerLink]="['/lista/pagos',cartera.id]" class="card-link">Pagos</a>
             <a [routerLink]="['/cliente/',cartera.id]" class="card-link">(+) Cliente</a>
             <a [routerLink]="['/form/credito',cartera.id]" class="card-link">Crédito</a>
             <a [routerLink]="['/form/gasto',cartera.id]" class="card-link">Gasto</a>

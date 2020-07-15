@@ -32,6 +32,7 @@ import { FormGastoComponent } from './componentes/gasto/formulario/form.gasto/fo
 import { ListaGastoComponent } from './componentes/gasto/lista/lista.gasto.component';
 import { CuadreCajaComponent } from './componentes/cuadre-caja/cuadre.caja.component';
 import { InfoFlujoCajaCarteraComponent } from './componentes/informes/flujo-caja-cartera/info.flujo.caja.cartera.component';
+import { ListaPagoClienteComponent } from './componentes/pago-cliente/listar/lista.pago.cliente.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { InfoFlujoCajaCarteraComponent } from './componentes/informes/flujo-caja
     FormGastoComponent,
     ListaGastoComponent,
     CuadreCajaComponent,
-    InfoFlujoCajaCarteraComponent
+    InfoFlujoCajaCarteraComponent,
+    ListaPagoClienteComponent
   ],
   imports: [
     BrowserModule,

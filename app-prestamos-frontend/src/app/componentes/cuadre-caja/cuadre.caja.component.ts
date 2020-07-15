@@ -64,7 +64,7 @@ export class CuadreCajaComponent implements OnInit {
       totalRecaudado:'',
       totalPrestado:'',
       confirmado:false,
-      observaciones:'',
+      observaciones:null,
       totalMulta:'',
       fechaConfirmacion:'',
       totalGasto:'',

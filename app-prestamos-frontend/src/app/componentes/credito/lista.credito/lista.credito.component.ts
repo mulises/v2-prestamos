@@ -1,12 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CreditoService } from 'src/app/servicios/credito/credito.service';
 import { Prestamo } from 'src/app/entidades/prestamo';
 import { PagoCliente } from 'src/app/entidades/pago.cliente';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
 import Swal from 'sweetalert2';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lista.credito',
@@ -17,9 +14,6 @@ export class ListaCreditoComponent implements OnInit {
 
   listaPrestamos: Prestamo[];
   listaPrestamosTotal: Prestamo[];
-  //displayedColumns: string[] = ['position', 'cliente', 'cuota', 'saldoActual'];
-  //dataSource;
- // @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private route: ActivatedRoute, private creditoService: CreditoService) {
     this.listaPrestamos = new Array();
@@ -28,17 +22,6 @@ export class ListaCreditoComponent implements OnInit {
   ngOnInit(): void {
     
     let idCartera = this.route.snapshot.paramMap.get("idCartera");
-    
-    
-    /*this.creditoService.getCreditosParaCobroByCartera(+idCartera).subscribe(prestamos =>{
-      console.log('dentro ' + new Date())
-      this.listaPrestamosTotal = prestamos as Prestamo[];
-      this.listaPrestamos = this.listaPrestamosTotal.slice(0,10);
-      console.log('dentro 2' + new Date())
-      console.log(this.listaPrestamos);
-      //this.dataSource = new MatTableDataSource(this.listaPrestamosTotal);
-      //this.dataSource.sort = this.sort;
-    });*/
     this.creditoService.getCreditosParaCobroByCartera(+idCartera).subscribe(prestamos => {
       this.listaPrestamos = prestamos;
     })
