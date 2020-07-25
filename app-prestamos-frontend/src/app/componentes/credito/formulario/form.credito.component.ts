@@ -142,7 +142,8 @@ export class FormCreditoComponent implements OnInit {
       multaAmpliacion: '',
       valorCuota:'',
       ampliacion:false,
-      saldoAnterior: 0
+      saldoAnterior: 0,
+      periodicidadCobro: 1
     });
   }
 
