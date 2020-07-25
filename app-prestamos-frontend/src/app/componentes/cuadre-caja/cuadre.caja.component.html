@@ -15,11 +15,17 @@
                 <mat-label>Confirmar</mat-label><br>
                 <mat-checkbox color="primary" formControlName="confirmado"></mat-checkbox>
             </div>
-            
-      
-            <div class="col-12 col-md-5">
+
+            <div class="col-12 col-md-5 mb-1">
                 <input type="submit" class="btn btn-primary full-width" value="Iniciar Cuadre" (click)="crearCuadre()" [disabled]="!cuadreForm.valid" *ngIf="!cuadreForm.controls.id.value; else blockBotonGuardar">
-            </div>  
+            </div> 
+
+            <div class="col-12 col-md-5">
+              <textarea class="form-control" formControlName = "observaciones" placeholder="Ingrese sus comentarios aquí"></textarea>
+            </div>
+            
+            
+
         </div>
     </form>
 
@@ -52,7 +58,7 @@
           }}
         </div>    
       </div>
-      <div class="card-group row ">
+      <div class="card-group row mb-1">
         <div class="card col-6 col-md-4 col-lg-3 bg-light text-center">
           <div class="card-header">
             Recaudado
