@@ -5,16 +5,18 @@
         <table class="table table-sm table-striped">
             <thead>
               <tr>
+                <th scope="col">#</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Cliente</th>
-                <th scope="col">Valor Pago</th>
+                <th scope="col">Valor</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let pagoCliente of listaPagos">
+                <td>{{pagoCliente.prestamo.cliente.enrutamiento}}</td>
                 <td>{{pagoCliente.fechaPago | date:'d/MM/yyyy hh:mm'}}</td>
-                <td>{{pagoCliente.prestamo.cliente.entidad.nombres}}</td>
+                <td>{{pagoCliente.prestamo.cliente.entidad.nombres}} {{pagoCliente.prestamo.cliente.entidad.apellidos}}</td>
                 <td>{{pagoCliente.valorPago | currency:'':'symbol':'0.0'}}</td>
                 <td><a (click)="eliminarPago(pagoCliente)" class="card-link text-info">eliminar</a></td>
               </tr>
