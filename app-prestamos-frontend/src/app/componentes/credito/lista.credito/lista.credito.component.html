@@ -3,10 +3,34 @@
     
     <a class="list-group-item list-group-item-action" *ngFor="let prestamo of listaPrestamos">
       <div class="d-flex w-100 justify-content-between">
-        <h3 class="mb-1">{{prestamo.cliente.enrutamiento}} - {{prestamo.cliente.entidad.nombres}} {{prestamo.cliente.entidad.apellidos}}</h3>
-        <small class="text-success">Saldo: {{prestamo.saldoActual | currency : '':'symbol' : '1.0-0'}}</small>
+        <h3 class="mb-1 font-weight-bold text-primary ">
+          <span class="text-monospace">
+            {{prestamo.cliente.enrutamiento}} - {{prestamo.cliente.entidad.nombres}} {{prestamo.cliente.entidad.apellidos}}
+          </span>
+        </h3>
+        <small class="text-success font-weight-bold">Saldo: {{prestamo.saldoActual | currency : '':'symbol' : '1.0-0'}}</small>
       </div>
-      <p class="mb-1">Cuota: {{prestamo.valorCuota | currency : '':'symbol' : '1.0-0'}}</p>
+      
+      <p class="mb-0">
+        <span class="text-monospace">Cuota:</span>
+        {{prestamo.valorCuota | currency : '':'symbol' : '1.0-0'}}
+      </p>
+      
+      <p class="mb-0">
+        <span class="text-monospace">Fecha Prestamo:</span>
+        {{prestamo.fechaPrestamo | date}}
+      </p>
+     
+      <p class="mb-0">
+        <span class="text-monospace">Telefono:</span>
+        {{prestamo.cliente.entidad.telefono}}
+      </p>
+
+      <p class="mb-1">
+        <span class="text-monospace">Dirección:</span>
+        {{prestamo.cliente.entidad.direccion}}
+      </p>
+
       <div *ngIf="prestamo.saldoMora>0;else saldoAfavor">
         <p class="text-danger">Saldo Mora: {{prestamo.saldoMora | currency : '':'symbol' : '1.0-0'}}</p>
       </div>    
@@ -17,7 +41,7 @@
       </ng-template>
 
       <div class="d-flex justify-content-left">
-        <a class="card-link text-info" (click)="generarPagoCuota(prestamo)">pagar cuota</a>
+        <a class="card-link text-warning" (click)="generarPagoCuota(prestamo)">pagar cuota</a>
       </div>
     </a>
   </div> 
