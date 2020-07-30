@@ -95,10 +95,17 @@ export class FormCreditoComponent implements OnInit {
       })
     },
     err =>{
-      Swal.fire({
-        icon: 'error',
-        text: err.error.mensajeError
-      })
+      
+      let mensajeError = 'error no controlado: ' + err.error.message;
+          if(err.error.mensajeError) {
+            mensajeError = err.error.mensajeError;
+          }
+        
+          Swal.fire({
+            icon: 'error',
+            title: mensajeError
+          })
+      
     });
   }
   
@@ -109,6 +116,17 @@ export class FormCreditoComponent implements OnInit {
         icon: 'success',
         text: `Ampliación de credito con éxito: ${creditoNew.cliente.entidad.nombres} ${creditoNew.cliente.entidad.apellidos}`
       })
+    },
+    err => {
+      let mensajeError = 'error no controlado: ' + err.error.message;
+          if(err.error.mensajeError) {
+            mensajeError = err.error.mensajeError;
+          }
+        
+          Swal.fire({
+            icon: 'error',
+            title: mensajeError
+          })
     })
   };
 
@@ -143,7 +161,8 @@ export class FormCreditoComponent implements OnInit {
       valorCuota:'',
       ampliacion:false,
       saldoAnterior: 0,
-      periodicidadCobro: 1
+      periodicidadCobro: 1,
+      valorAbono:0
     });
   }
 

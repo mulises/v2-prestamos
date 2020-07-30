@@ -4,7 +4,7 @@ import { CuadreCajaService } from 'src/app/servicios/cuadre.caja/cuadre.caja.ser
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CuadreCaja } from 'src/app/entidades/cuadre.caja';
 import { CarteraService } from 'src/app/servicios/cartera/cartera.service';
-import Swal from 'sweetalert2';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 @Component({
   selector: 'app-cuadre.caja',
@@ -31,6 +31,18 @@ export class CuadreCajaComponent implements OnInit {
           this.cuadreForm.setValue(cuadreActivo);          
         },
         err =>{
+          
+          let mensajeError = 'error no controlado: ' + err.error.message;
+          if(err.error.mensajeError) {
+            mensajeError = err.error.mensajeError;
+          }
+        
+          Swal.fire({
+            icon: 'error',
+            title: mensajeError
+          })
+          
+
           this.cuadreForm.controls.cartera.get('id').setValue(carteraParam.id);
           this.cuadreForm.controls.cartera.get('nombre').setValue(carteraParam.nombre);
           this.cuadreForm.controls.cartera.get('descripcion').setValue(carteraParam.descripcion);
@@ -68,6 +80,7 @@ export class CuadreCajaComponent implements OnInit {
       totalMulta:'',
       fechaConfirmacion:'',
       totalGasto:'',
+      totalAbono:'',
       cartera: this.fb.group({
         id:null,
         nombre:'',

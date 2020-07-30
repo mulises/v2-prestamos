@@ -34,6 +34,12 @@
       </div>
       
       <div class="row container">
+        <div class="col-md-4 col-6">
+          <mat-form-field class="full-width">
+            <mat-label>Abono</mat-label>
+            <input matInput type="number" placeholder="Abono" formControlName="valorAbono">
+          </mat-form-field>
+        </div>
         <div class="col-md-4 col-6" *ngIf="creditoForm.controls.ampliacion.value">
           <mat-form-field class="full-width">
             <mat-label>Multa Ampliación</mat-label>
