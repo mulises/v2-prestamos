@@ -81,6 +81,7 @@ export class CuadreCajaComponent implements OnInit {
       fechaConfirmacion:'',
       totalGasto:'',
       totalAbono:'',
+      valorRealRecibido:0,
       cartera: this.fb.group({
         id:null,
         nombre:'',

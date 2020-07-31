@@ -4,21 +4,28 @@
   <br>
     <form [formGroup]="cuadreForm">
         <div class="row container mb-2">
-            <div class="col-6 col-md-2">
+            <div class="col-4 col-md-2">
               <mat-form-field class="full-width">
                 <mat-label>Base</mat-label>
                 <input matInput type="text" placeholder="Valor Base" formControlName="valorBase">
               </mat-form-field>
             </div>
 
-            <div class="col-6 col-md-2 ">
+            <div class="col-4 col-md-2">
+              <mat-form-field class="full-width">
+                <mat-label>Valor Recibido</mat-label>
+                <input matInput type="text" placeholder="Valor Recibido" formControlName="valorRealRecibido">
+              </mat-form-field>
+            </div>
+
+            <div class="col-4 col-md-2 ">
                 <mat-label>Confirmar</mat-label><br>
                 <mat-checkbox color="primary" formControlName="confirmado"></mat-checkbox>
             </div>
 
             <div class="col-12 col-md-5 mb-1">
                 <input type="submit" class="btn btn-primary full-width" value="Iniciar Cuadre" (click)="crearCuadre()" [disabled]="!cuadreForm.valid" *ngIf="!cuadreForm.controls.id.value; else blockBotonGuardar">
-            </div> 
+            </div>            
 
             <div class="col-12 col-md-5">
               <textarea class="form-control" formControlName = "observaciones" placeholder="Ingrese sus comentarios aquí"></textarea>
