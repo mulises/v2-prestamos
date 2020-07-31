@@ -30,7 +30,6 @@ export class CreditoService {
   }
 
   ampliarCredito(idCreditoAnterior:number, credito: Prestamo): Observable<Prestamo> {
-    console.log(credito);
     return this.http.post<Prestamo>(environment.urlEndPointApi + `/prestamo/ampliar-credito/${idCreditoAnterior}`,credito);
   }
 
