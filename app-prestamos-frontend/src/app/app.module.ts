@@ -24,7 +24,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CarteraAsignadaComponent } from './componentes/cartera/cartera.asignada.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { ListaCreditoComponent } from './componentes/credito/lista.credito/lista.credito.component';
+import { ListaDeudoresComponent } from './componentes/credito/lista.deudores/lista.deudores.component';
 import { FormCreditoComponent } from './componentes/credito/formulario/form.credito.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { FormClienteComponent } from './componentes/cliente/formulario/form.cliente.component';
@@ -33,13 +33,14 @@ import { ListaGastoComponent } from './componentes/gasto/lista/lista.gasto.compo
 import { CuadreCajaComponent } from './componentes/cuadre-caja/cuadre.caja.component';
 import { InfoFlujoCajaCarteraComponent } from './componentes/informes/flujo-caja-cartera/info.flujo.caja.cartera.component';
 import { ListaPagoClienteComponent } from './componentes/pago-cliente/listar/lista.pago.cliente.component';
+import { ListaCreditosComponent } from './componentes/credito/lista-creditos/lista.creditos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CarteraAsignadaComponent,
-    ListaCreditoComponent,
+    ListaDeudoresComponent,
     FormCreditoComponent,
     HeaderComponent,
     FormClienteComponent,
@@ -47,7 +48,8 @@ import { ListaPagoClienteComponent } from './componentes/pago-cliente/listar/lis
     ListaGastoComponent,
     CuadreCajaComponent,
     InfoFlujoCajaCarteraComponent,
-    ListaPagoClienteComponent
+    ListaPagoClienteComponent,
+    ListaCreditosComponent
   ],
   imports: [
     BrowserModule,

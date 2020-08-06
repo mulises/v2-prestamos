@@ -37,7 +37,7 @@
                 <td>{{gasto.descripcion}}</td>
                 <td>{{gasto.valorGasto | currency:'':'symbol':'1.0-0'}}</td>
                 <td><a (click)="gastoSeleccionadoEditar(gasto)" class="card-link text-info">editar</a></td>
-                <td><a (click)="eliminarGasto(gasto)" class="card-link text-info">eliminar</a></td>
+                <td><button type="button" (click)="eliminarGasto(gasto)" class="btn btn-link">x</button></td>
               </tr>
             </tbody>
           </table>

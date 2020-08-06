@@ -13,4 +13,5 @@ export class Prestamo {
   multaAmpliacion:number;
   ampliacion:boolean;
   saldoAnterior:number;
+  valorAbono: number;
 }

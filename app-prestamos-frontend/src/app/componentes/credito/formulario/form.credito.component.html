@@ -1,5 +1,7 @@
 <section class="container" >
-  <div class="h3 text-center text-uppercase">{{cartera?.nombre}}</div>
+
+  <div class="container" *ngIf="clientesFiltrados; else blockCargando">
+    <div class="h3 text-center text-uppercase">{{cartera?.nombre}}</div>
     <form [formGroup]="creditoForm">
       <div class="container">
         <mat-form-field class="full-width">
@@ -55,6 +57,14 @@
         <input type="submit" class="btn btn-primary full-width" value="Ampliar Crédito" (click)="ampliarCredito()" [disabled]="!creditoForm.valid">
       </ng-template>
     </form>
+  </div>
+
+  <ng-template #blockCargando>
+    <div class="d-flex align-items-center">
+      <strong class="text-warning">Cargando...</strong>
+      <div class="spinner-border text-warning"  role="status" aria-hidden="true"></div>
+    </div>
+  </ng-template>
 
 </section>
         

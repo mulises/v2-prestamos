@@ -5,6 +5,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CuadreCaja } from 'src/app/entidades/cuadre.caja';
 import { CarteraService } from 'src/app/servicios/cartera/cartera.service';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
+import { Prestamo } from 'src/app/entidades/prestamo';
+import { CreditoService } from 'src/app/servicios/credito/credito.service';
+import { ModalService } from 'src/app/servicios/modal.service';
 
 @Component({
   selector: 'app-cuadre.caja',
@@ -14,9 +17,12 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
 export class CuadreCajaComponent implements OnInit {
 
   cuadreForm: FormGroup;
+  listaPrestamos: Prestamo[];
 
   constructor(private activatedRoute: ActivatedRoute, 
-    private cuadreService: CuadreCajaService, private fb: FormBuilder, private carteraService: CarteraService) { }
+    private cuadreService: CuadreCajaService, private fb: FormBuilder, 
+    private carteraService: CarteraService, private creditoService: CreditoService,
+    public modalService: ModalService) { }
 
   ngOnInit(): void {
     
@@ -50,7 +56,21 @@ export class CuadreCajaComponent implements OnInit {
         });
       }
     })
-    
+
+    //Se actualizan los valores de resumen al eliminar un prestamo
+    this.modalService.notificarModificacionListaPrestamos.subscribe((nuevaLista: Prestamo[]) => {
+      
+      let totalPrestamos = 0;
+      let totalAbono = 0;
+
+      nuevaLista.forEach(element => {
+        totalPrestamos += element.montoPrestamo;
+        totalAbono += element.valorAbono;
+      });
+      
+      this.cuadreForm.controls.totalPrestado.setValue(totalPrestamos);
+      this.cuadreForm.controls.totalAbono.setValue(totalAbono);
+    })   
     
   }
 
@@ -65,6 +85,17 @@ export class CuadreCajaComponent implements OnInit {
     this.cuadreService.actualizarCuadreCaja(this.cuadreForm.value as CuadreCaja).subscribe(cuadreActualizado => {
       Swal.fire('Cuadre Editado','Se ha modificado el valor base','success');
     });
+  }
+
+  /**
+   * Metodos para listar los registros de cada resumen
+  */
+
+  listarPrestamos() {
+    this.creditoService.getCreditosPorCuadreDiario(+this.cuadreForm.controls.id.value).subscribe(listaPrestamosResp => {
+      this.listaPrestamos = listaPrestamosResp as Prestamo[];
+      this.modalService.abrirModal();
+    })
   }
 
   //Metodo para inicializar el formulario

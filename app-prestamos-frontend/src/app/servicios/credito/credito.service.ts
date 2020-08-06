@@ -33,4 +33,12 @@ export class CreditoService {
     return this.http.post<Prestamo>(environment.urlEndPointApi + `/prestamo/ampliar-credito/${idCreditoAnterior}`,credito);
   }
 
+  getCreditosPorCuadreDiario(idCuadreDiario: number): Observable<Prestamo[]> {
+    return this.http.get<Prestamo[]>(environment.urlEndPointApi+`/prestamo/lista-prestamos/cuadre/${idCuadreDiario}`)
+  }
+
+  eliminarPrestamo(idPrestamo: number): Observable<void> {
+    return this.http.delete<void>(environment.urlEndPointApi+`/prestamo/eliminar/${idPrestamo}`)
+  }
+
 }

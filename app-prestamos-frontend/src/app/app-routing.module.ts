@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './componentes/login/login.component';
 import { CarteraAsignadaComponent } from './componentes/cartera/cartera.asignada.component';
 import { AuthGuard } from './guards/auth.guard';
-import { ListaCreditoComponent } from './componentes/credito/lista.credito/lista.credito.component';
+import { ListaDeudoresComponent } from './componentes/credito/lista.deudores/lista.deudores.component';
 import { FormCreditoComponent } from './componentes/credito/formulario/form.credito.component';
 import { FormClienteComponent } from './componentes/cliente/formulario/form.cliente.component';
 import { FormGastoComponent } from './componentes/gasto/formulario/form.gasto/form.gasto.component';
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path:'login', component: LoginComponent },
   { path:'principal', component: CarteraAsignadaComponent, canActivate:[AuthGuard], data:{role:'ROLE_LISTAR_CARTERAS'}},
-  { path:'creditos/:idCartera', component: ListaCreditoComponent, canActivate:[AuthGuard, ValidarCuadreActivoGuard], data:{role:'ROLE_LISTAR_DEUDORES'}},
+  { path:'creditos/:idCartera', component: ListaDeudoresComponent, canActivate:[AuthGuard, ValidarCuadreActivoGuard], data:{role:'ROLE_LISTAR_DEUDORES'}},
   { path: 'form/credito/:idCartera', component: FormCreditoComponent, canActivate:[AuthGuard,ValidarCuadreActivoGuard]},
   { path:'cliente/:idCartera', component: FormClienteComponent, canActivate:[AuthGuard]},
   { path:'form/gasto/:idCartera', component: FormGastoComponent, canActivate:[AuthGuard,ValidarCuadreActivoGuard]},

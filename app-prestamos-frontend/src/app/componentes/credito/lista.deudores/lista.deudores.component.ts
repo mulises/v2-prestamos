@@ -6,11 +6,11 @@ import { PagoCliente } from 'src/app/entidades/pago.cliente';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-lista.credito',
-  templateUrl: './lista.credito.component.html',
-  styleUrls: ['./lista.credito.component.css']
+  selector: 'app-lista.deudores',
+  templateUrl: './lista.deudores.component.html',
+  styleUrls: ['./lista.deudores.component.css']
 })
-export class ListaCreditoComponent implements OnInit {
+export class ListaDeudoresComponent implements OnInit {
 
   listaPrestamos: Prestamo[];
   listaPrestamosTotal: Prestamo[];
