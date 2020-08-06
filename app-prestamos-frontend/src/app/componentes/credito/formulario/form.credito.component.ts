@@ -39,10 +39,10 @@ export class FormCreditoComponent implements OnInit {
     }
 
     this.clientesFiltrados = this.creditoForm.controls.cliente.valueChanges
-      .pipe(
-        map(value => value ? typeof value === 'string'? value: value.nombre: ''),
-        flatMap(value => value ? value.length > 2 ? this._filter(value):[]: [])
-      );
+    .pipe(
+      map(value => value ? typeof value === 'string'? value: value.nombre: ''),
+      flatMap(value => value ? value.length > 2 ? this._filter(value):[]: [])
+    );
   }
 
   private _filter(value: string): Observable<Cliente[]> {

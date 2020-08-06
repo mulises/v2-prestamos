@@ -34,6 +34,8 @@ import { CuadreCajaComponent } from './componentes/cuadre-caja/cuadre.caja.compo
 import { InfoFlujoCajaCarteraComponent } from './componentes/informes/flujo-caja-cartera/info.flujo.caja.cartera.component';
 import { ListaPagoClienteComponent } from './componentes/pago-cliente/listar/lista.pago.cliente.component';
 import { ListaCreditosComponent } from './componentes/credito/lista-creditos/lista.creditos.component';
+import { HistorialClienteComponent } from './componentes/cliente/historial/historial.cliente.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { ListaCreditosComponent } from './componentes/credito/lista-creditos/lis
     CuadreCajaComponent,
     InfoFlujoCajaCarteraComponent,
     ListaPagoClienteComponent,
-    ListaCreditosComponent
+    ListaCreditosComponent,
+    HistorialClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import { ListaCreditosComponent } from './componentes/credito/lista-creditos/lis
     MatCardModule,
     MatProgressSpinnerModule,
     MatDatepickerModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatExpansionModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

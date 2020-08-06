@@ -21,7 +21,7 @@
                     <tbody>
                       <tr *ngFor="let prestamo of listaPrestamos">
                         <td>{{prestamo.fechaPrestamo | date:'short'}}</td>
-                        <td class="text-capitalize">Marlon Baron Torres</td>
+                        <td class="text-capitalize">{{prestamo.cliente.entidad.nombres}} {{prestamo.cliente.entidad.apellidos}}</td>
                         <td>{{prestamo.montoPrestamo | currency : '':'symbol' : '1.0-0'}}</td>
                         <td><button type="button" (click)="eliminarPrestamo(prestamo.id)" class="btn btn-link">x</button></td>
                       </tr>

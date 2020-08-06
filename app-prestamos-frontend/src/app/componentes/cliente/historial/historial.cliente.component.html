@@ -1,0 +1,55 @@
+<div class="container">
+
+    <form [formGroup]="historialForm">
+        <div class="container">
+            <mat-form-field class="full-width">
+              <input type="text"
+                     placeholder="Cliente"
+                     aria-label="Clientes"
+                     matInput
+                     formControlName="cliente"
+                     [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="mostrarNombre" (optionSelected)="seleccionCliente($event)">
+                <mat-option *ngFor="let cliente of clientesFiltrados | async" [value]="cliente">
+                  {{cliente.entidad.nombres}} {{cliente.entidad.apellidos}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            
+          </div>
+    </form>
+
+    <div *ngIf="clienteSeleccionado">
+
+        <h3>Cliente Seleccionado: <span class="text-uppercase">{{clienteSeleccionado.entidad.nombres}} {{clienteSeleccionado.entidad.apellidos}}</span></h3>
+
+        <mat-accordion >
+            <mat-expansion-panel hideToggle *ngFor="let prestamo of clienteSeleccionado.prestamos">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{prestamo.fechaPrestamo | date}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  {{prestamo.montoPrestamo * (1+(prestamo.porcentajePrestamo/100)) | currency:'':'symbol':'1.0-0'}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Valor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let pago of prestamo.pagosCliente">
+                    <td>{{pago.fechaPago | date:'short'}}</td>
+                    <td>{{pago.valorPago | currency : '':'symbol' : '1.0-0'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </mat-expansion-panel>
+            
+        </mat-accordion>
+
+    </div>   
+</div>

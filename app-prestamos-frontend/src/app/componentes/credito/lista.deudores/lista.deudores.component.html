@@ -4,8 +4,9 @@
     <a class="list-group-item list-group-item-action" *ngFor="let prestamo of listaPrestamos">
       <div class="d-flex w-100 justify-content-between">
         <h3 class="mb-1 font-weight-bold text-primary ">
-          <span class="text-monospace text-uppercase">
-            {{prestamo.cliente.enrutamiento}} - {{prestamo.cliente.entidad.nombres}} {{prestamo.cliente.entidad.apellidos}}
+          {{prestamo.cliente.enrutamiento}} -
+          <span class="text-sm text-monospace text-capitalize">
+            {{prestamo.cliente.entidad.nombres}} {{prestamo.cliente.entidad.apellidos}}
           </span>
         </h3>
         <small class="text-success font-weight-bold">Saldo: {{prestamo.saldoActual | currency : '':'symbol' : '1.0-0'}}</small>

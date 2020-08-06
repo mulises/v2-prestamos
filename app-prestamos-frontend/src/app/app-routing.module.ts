@@ -12,6 +12,7 @@ import { CuadreCajaComponent } from './componentes/cuadre-caja/cuadre.caja.compo
 import { ValidarCuadreActivoGuard } from './guards/validar.cuadre.guard';
 import { InfoFlujoCajaCarteraComponent } from './componentes/informes/flujo-caja-cartera/info.flujo.caja.cartera.component';
 import { ListaPagoClienteComponent } from './componentes/pago-cliente/listar/lista.pago.cliente.component';
+import { HistorialClienteComponent } from './componentes/cliente/historial/historial.cliente.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path:'lista/gasto/:idCartera', component: ListaGastoComponent, canActivate:[AuthGuard]},
   { path:'form/cuadre/:idCartera', component: CuadreCajaComponent, canActivate:[AuthGuard]} ,
   { path:'form/info-flujo-caja/:idCartera', component: InfoFlujoCajaCarteraComponent, canActivate:[AuthGuard], data:{role:'ROLE_INF_FLUJO_CAJA'}},
-  { path:'lista/pagos/:idCartera', component: ListaPagoClienteComponent, canActivate:[AuthGuard,ValidarCuadreActivoGuard], data:{role:'ROLE_LISTAR_PAGOS'}}
+  { path:'lista/pagos/:idCartera', component: ListaPagoClienteComponent, canActivate:[AuthGuard,ValidarCuadreActivoGuard], data:{role:'ROLE_LISTAR_PAGOS'}},
+  { path:'historial/creditos', component: HistorialClienteComponent, canActivate:[AuthGuard], data:{role:'ROLE_VER_HISTORIAL'}}
 ];
 
 @NgModule({
