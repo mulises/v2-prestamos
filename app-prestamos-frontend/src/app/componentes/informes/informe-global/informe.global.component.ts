@@ -15,7 +15,6 @@ export class InformeGlobalComponent implements OnInit {
   constructor(carteraService: CarteraService) {
     carteraService.getCarteras().subscribe((carterasResp:any) => {
       this.listaCarteras = carterasResp;
-      console.log(this.listaCarteras)
     });
   }
 
