@@ -2,54 +2,97 @@
 
     <form [formGroup]="historialForm">
         <div class="container">
-            <mat-form-field class="full-width">
-              <input type="text"
-                     placeholder="Cliente"
-                     aria-label="Clientes"
-                     matInput
-                     formControlName="cliente"
-                     [matAutocomplete]="auto">
+          <mat-form-field class="full-width">
+            <input type="text"
+              placeholder="Cliente"
+              aria-label="Clientes"
+              matInput
+              formControlName="cliente"
+              [matAutocomplete]="auto">
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="mostrarNombre" (optionSelected)="seleccionCliente($event)">
                 <mat-option *ngFor="let cliente of clientesFiltrados | async" [value]="cliente">
                   {{cliente.entidad.nombres}} {{cliente.entidad.apellidos}}
                 </mat-option>
               </mat-autocomplete>
+          </mat-form-field>            
+        </div>
+    </form>
+
+    <div class="container" *ngIf="clienteSeleccionado">
+      <form [formGroup]="clienteForm">
+        <div >
+          <div class="row" formGroupName="entidad">
+            <mat-form-field class="col col-sm-6">
+              <mat-label>Nombres</mat-label>
+              <input matInput type="text" formControlName="nombres">
+            </mat-form-field>
+            <mat-form-field class="col col-sm-6">
+              <mat-label>Apellidos</mat-label>
+              <input matInput type="text" formControlName="apellidos">
+            </mat-form-field>            
+          </div>
+
+          <div class="row">
+            <mat-form-field class="col-6" >
+              <mat-label>Enrutamiento</mat-label>
+              <input matInput type="text" formControlName="enrutamiento">
             </mat-form-field>
             
+            <mat-form-field class="col-6" formGroupName="entidad">
+              <mat-label>Identificacion</mat-label>
+              <input matInput type="text" formControlName="numeroIdentificacion">
+            </mat-form-field>
+           
           </div>
-    </form>
+          
+          <mat-form-field formGroupName="entidad">
+            <mat-label>Direccion</mat-label>
+            <input matInput type="text" formControlName="direccion">
+          </mat-form-field>
+          <mat-form-field formGroupName="entidad">
+            <mat-label>Teléfono</mat-label>
+            <input matInput type="text" formControlName="telefono">
+          </mat-form-field>
+        </div>        
+  
+        <input type="submit" class="btn btn-primary full-width" value="Editar Cliente" (click)="editarCliente()" [disabled]="!clienteForm.valid">
+        
+      </form>
+    </div>
+    
 
     <div *ngIf="clienteSeleccionado">
 
-        <h3>Cliente Seleccionado: <span class="text-uppercase">{{clienteSeleccionado.entidad.nombres}} {{clienteSeleccionado.entidad.apellidos}}</span></h3>
-
-        <mat-accordion >
-            <mat-expansion-panel hideToggle *ngFor="let prestamo of clienteSeleccionado.prestamos">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  {{prestamo.fechaPrestamo | date}}
-                </mat-panel-title>
-                <mat-panel-description>
-                  {{prestamo.montoPrestamo * (1+(prestamo.porcentajePrestamo/100)) | currency:'':'symbol':'1.0-0'}}
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Valor</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let pago of prestamo.pagosCliente">
-                    <td>{{pago.fechaPago | date:'short'}}</td>
-                    <td>{{pago.valorPago | currency : '':'symbol' : '1.0-0'}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </mat-expansion-panel>
-            
-        </mat-accordion>
+      <h2 class="my-2 text-monospace text-warning">Historial de créditos</h2>
+        
+      <mat-accordion>
+        <mat-expansion-panel hideToggle *ngFor="let prestamo of clienteSeleccionado.prestamos">
+          <mat-expansion-panel-header [ngClass]="{'bg-success': prestamo.activo}">
+            <mat-panel-title class="text-uppercase">
+              <mat-icon aria-hidden="false" aria-label="Example home icon" class="text-primary">credit_card</mat-icon>
+               {{prestamo.id}} - {{prestamo.fechaPrestamo | date:'d/mm/yyyy h:mm a'}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{prestamo.montoPrestamo * (1+(prestamo.porcentajePrestamo/100)) | currency:'':'symbol':'1.0-0'}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Fecha</th>
+                <th scope="col">Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pago of prestamo.pagosCliente">
+                <td>{{pago.fechaPago | date:'short'}}</td>
+                <td>{{pago.valorPago | currency : '':'symbol' : '1.0-0'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+        
+      </mat-accordion>
 
     </div>   
 </div>

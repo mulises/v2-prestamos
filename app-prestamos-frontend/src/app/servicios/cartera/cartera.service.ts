@@ -19,4 +19,8 @@ export class CarteraService {
   getCarteraByIdSinListCliente(idCartera: number): Observable<Cartera> {
     return this.http.get<Cartera>(environment.urlEndPointApi + `/api-prestamos/cartera-sin-list-cliente/${idCartera}`)
   }
+
+  getCarteras(): Observable<Cartera[]> {
+    return this.http.get<Cartera[]>(environment.urlEndPointApi + `/api-prestamos/rutas`);
+  }
 }

@@ -36,7 +36,7 @@ export class InfoFlujoCajaCarteraComponent implements OnInit {
   descargarFlujoDeCaja(): void {
     let fechaInicio = this.flujoCajaForm.controls.fechaInicio.value;
     let fechaFin = this.flujoCajaForm.controls.fechaFin.value;
-    let nombreArchivo = 'flujo_caja'+new Date()+'.xls';
+    let nombreArchivo = 'flujo_caja.xls';
     this.cuadreService.informeFlujoCaja(nombreArchivo,this.cartera.id, fechaInicio,fechaFin).subscribe(data => {
       saveAs(new Blob([data], {type:'application/vnd.ms-excel'}), nombreArchivo);    
     });

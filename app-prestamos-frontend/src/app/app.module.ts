@@ -16,6 +16,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatIconModule} from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ import { ListaPagoClienteComponent } from './componentes/pago-cliente/listar/lis
 import { ListaCreditosComponent } from './componentes/credito/lista-creditos/lista.creditos.component';
 import { HistorialClienteComponent } from './componentes/cliente/historial/historial.cliente.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { InformeGlobalComponent } from './componentes/informes/informe-global/informe.global.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     InfoFlujoCajaCarteraComponent,
     ListaPagoClienteComponent,
     ListaCreditosComponent,
-    HistorialClienteComponent
+    HistorialClienteComponent,
+    InformeGlobalComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatIconModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

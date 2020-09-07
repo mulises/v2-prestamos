@@ -117,7 +117,9 @@ export class CuadreCajaComponent implements OnInit {
         id:null,
         nombre:'',
         descripcion:'',
-        porcentajePrestamo:''
+        porcentajePrestamo:'',
+        cantidadPrestamosActivos:0,
+        saldoPendienteTotal:0
       })
     })
   }

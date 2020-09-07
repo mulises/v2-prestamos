@@ -1,0 +1,24 @@
+<section class="container">
+    <div class="mb-2"><p class="h1 text-center">Informe Global</p></div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4" *ngFor="let cartera of listaCarteras">
+            <mat-card class="bg-light mb-2">
+                <mat-card-header>
+                    <mat-card-title>{{cartera.nombre}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                           Cantidad Prestamos activos
+                          <span class="badge badge-primary badge-pill">{{cartera.cantidadPrestamosActivos}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          Total prestamos Activos
+                          <span class="badge badge-primary badge-pill">{{cartera.saldoPendienteTotal | currency : '':'symbol' : '1.0-0'}}</span>
+                        </li>
+                      </ul>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</section>

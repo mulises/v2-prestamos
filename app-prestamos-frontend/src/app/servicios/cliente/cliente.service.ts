@@ -35,7 +35,7 @@ export class ClienteService {
   }
 
   editarCliente(cliente: Cliente): Observable<Cliente> {
-    return this.http.put<Cliente>(environment.urlEndPointApi + `/api-prestamos/cliente/${cliente.id}`,cliente);
+    return this.http.put<Cliente>(environment.urlEndPointApi + `/api-prestamos/update-cliente/${cliente.id}`,cliente);
   }
 
   getClienteByNumeroIdentificacion(numeroIdentificacion: string): Observable<Cliente> {

@@ -13,6 +13,7 @@ import { ValidarCuadreActivoGuard } from './guards/validar.cuadre.guard';
 import { InfoFlujoCajaCarteraComponent } from './componentes/informes/flujo-caja-cartera/info.flujo.caja.cartera.component';
 import { ListaPagoClienteComponent } from './componentes/pago-cliente/listar/lista.pago.cliente.component';
 import { HistorialClienteComponent } from './componentes/cliente/historial/historial.cliente.component';
+import { InformeGlobalComponent } from './componentes/informes/informe-global/informe.global.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,9 @@ const routes: Routes = [
   { path:'form/cuadre/:idCartera', component: CuadreCajaComponent, canActivate:[AuthGuard]} ,
   { path:'form/info-flujo-caja/:idCartera', component: InfoFlujoCajaCarteraComponent, canActivate:[AuthGuard], data:{role:'ROLE_INF_FLUJO_CAJA'}},
   { path:'lista/pagos/:idCartera', component: ListaPagoClienteComponent, canActivate:[AuthGuard,ValidarCuadreActivoGuard], data:{role:'ROLE_LISTAR_PAGOS'}},
-  { path:'historial/creditos', component: HistorialClienteComponent, canActivate:[AuthGuard], data:{role:'ROLE_VER_HISTORIAL'}}
+  { path:'historial/creditos', component: HistorialClienteComponent, canActivate:[AuthGuard], data:{role:'ROLE_VER_HISTORIAL'}},
+  { path:'informe/global', component: InformeGlobalComponent, canActivate:[AuthGuard], data:{role:'ROLE_VER_INFO_GLOBAL'}}
+  
 ];
 
 @NgModule({

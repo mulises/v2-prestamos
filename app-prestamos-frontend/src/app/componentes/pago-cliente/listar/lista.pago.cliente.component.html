@@ -15,7 +15,7 @@
         <tbody>
           <tr *ngFor="let pagoCliente of listaPagos">
             <td>{{pagoCliente.prestamo.cliente.enrutamiento}}</td>
-            <td>{{pagoCliente.fechaPago | date:'d/MM/yyyy hh:mm'}}</td>
+            <td>{{pagoCliente.fechaPago | date:'short'}}</td>
             <td>{{pagoCliente.prestamo.cliente.entidad.nombres}} {{pagoCliente.prestamo.cliente.entidad.apellidos}}</td>
             <td>{{pagoCliente.valorPago | currency:'':'symbol':'0.0'}}</td>
             <td><a (click)="eliminarPago(pagoCliente)" class="card-link text-info">eliminar</a></td>
