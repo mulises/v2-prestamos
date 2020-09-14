@@ -8,6 +8,7 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
 import { Prestamo } from 'src/app/entidades/prestamo';
 import { CreditoService } from 'src/app/servicios/credito/credito.service';
 import { ModalService } from 'src/app/servicios/modal.service';
+import { Cartera } from 'src/app/entidades/cartera';
 
 @Component({
   selector: 'app-cuadre.caja',
@@ -28,7 +29,7 @@ export class CuadreCajaComponent implements OnInit {
     
     this.inicializarFormularioCuadre();
     let idCartera = this.activatedRoute.snapshot.paramMap.get('idCartera');
-    let carteraParam;
+    let carteraParam: Cartera;
     
     this.carteraService.getCarteraByIdSinListCliente(+idCartera).subscribe(cartera => {
       carteraParam = cartera;
