@@ -1,10 +1,11 @@
 <section class="container">
     <div class="mb-2"><p class="h1 text-center">Informe Global</p></div>
     <div class="row">
-        <div class="col-sm-6 col-md-4" *ngFor="let cartera of listaCarteras">
+        <div class="col-sm-6 col-md-4" *ngFor="let cartera of listaCarterasInfoGlobal">
             <mat-card class="bg-light mb-2">
                 <mat-card-header>
-                    <mat-card-title>{{cartera.nombre}}</mat-card-title>
+                    <mat-card-title>{{cartera.nombreCartera}}</mat-card-title>
+                    <mat-icon style="cursor:pointer;" class="text-primary" aria-hidden="false" (click)="exportarCreditos(cartera.id)" aria-label="Example home icon">arrow_downward</mat-icon>
                 </mat-card-header>
                 <mat-card-content>
                     <ul class="list-group">

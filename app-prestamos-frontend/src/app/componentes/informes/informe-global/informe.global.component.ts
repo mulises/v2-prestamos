@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Cartera } from 'src/app/entidades/cartera';
 import { CarteraService } from 'src/app/servicios/cartera/cartera.service';
-import { Prestamo } from 'src/app/entidades/prestamo';
+import { InfoGlobal } from 'src/app/entidades/interfaces/info-global';
 
 @Component({
   selector: 'app-informe.global',
@@ -10,11 +9,11 @@ import { Prestamo } from 'src/app/entidades/prestamo';
 })
 export class InformeGlobalComponent implements OnInit {
 
-  listaCarteras: Cartera[];
+  listaCarterasInfoGlobal: InfoGlobal[];
   
-  constructor(carteraService: CarteraService) {
-    carteraService.getCarteras().subscribe((carterasResp:any) => {
-      this.listaCarteras = carterasResp;
+  constructor(private carteraService: CarteraService) {
+    carteraService.getCarterasInfoGlobal().subscribe((carterasInfoGloblaResp:any) => {
+      this.listaCarterasInfoGlobal = carterasInfoGloblaResp;
     });
   }
 
@@ -22,15 +21,9 @@ export class InformeGlobalComponent implements OnInit {
   }
 
   exportarCreditos(idCartera: number): void {
-
-    let carteraFiltrada: Cartera;
-    let prestamosActivos: Prestamo[];
-
-    this.listaCarteras
-    .filter(cartera => cartera.id == 2)
-    .map(cartera => {
-      carteraFiltrada = cartera
-      console.log(cartera.clientes.filter(prestamo => prestamo.activo))
+    let nombreArchivo = 'creditos_activos.xls';
+    this.carteraService.informePrestamosActivos(nombreArchivo,idCartera).subscribe(data => {
+      saveAs(new Blob([data], {type:'application/vnd.ms-excel'}), nombreArchivo);    
     });
   }
 
