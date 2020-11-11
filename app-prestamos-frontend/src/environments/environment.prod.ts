@@ -3,8 +3,8 @@ export const environment = {
 
   /**************************************************************
   ************************** VULTR *****************************/
-  urlEndPointApi: 'http://108.61.220.72:8085',
-  urlEnpointToken: 'http://108.61.220.72:8085/oauth/token'
+  urlEndPointApi: 'http://lanza.saleslinea.com:8085',
+  urlEnpointToken: 'http://lanza.saleslinea.com:8085/oauth/token'
 
   /*urlEndPointApi: 'https://ctrlprest.herokuapp.com',
   urlEnpointToken: 'https://ctrlprest.herokuapp.com/oauth/token'*/

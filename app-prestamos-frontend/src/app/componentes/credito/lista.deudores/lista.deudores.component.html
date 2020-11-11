@@ -16,10 +16,15 @@
         <span class="text-monospace">Cuota:</span>
         {{prestamo.valorCuota | currency : '':'symbol' : '1.0-0'}}
       </p>
-      
+
       <p class="mb-0">
         <span class="text-monospace">Fecha Prestamo:</span>
         {{prestamo.fechaPrestamo | date}}
+      </p>
+      
+      <p class="mb-0">
+        <span class="text-monospace">Fecha Ultimo Pago:</span>
+        {{prestamo.ultimoPago?.fechaPago | date}}
       </p>
      
       <p class="mb-0">

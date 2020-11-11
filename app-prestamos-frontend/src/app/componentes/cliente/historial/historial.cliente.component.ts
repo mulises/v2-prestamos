@@ -70,10 +70,10 @@ export class HistorialClienteComponent implements OnInit {
       }),
       enrutamiento: ['',Validators.required],
       ruta: ['',Validators.required],
-      prestamos: ['',Validators.required],
+      prestamos: [''],
       fechaCreacion: ['',Validators.required],
       activo: ['',Validators.required],
-      saldoPendiente: ['',Validators.required],
+      saldoPendiente: [''],
     })
   }
 
