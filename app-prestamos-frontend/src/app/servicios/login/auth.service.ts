@@ -12,6 +12,7 @@ export class AuthService {
 
   private _usuario: Usuario;
   private _token: string;
+  private _codigoEmpresa: string;
 
   constructor(private http: HttpClient) { }
 
@@ -38,6 +39,12 @@ export class AuthService {
     //sessionStorage.setItem('usuario',JSON.stringify(this._usuario));
     localStorage.setItem('usuario',JSON.stringify(this._usuario));
   }
+
+  guardarCodigoEmpresa(accessToken: string): void {
+    let payload = this.obtenerDatosToken(accessToken);
+    localStorage.setItem('codigo_empresa',payload.codigo_empresa);
+  }
+
   guardarToken(accessToken: string): void {
     this._token = accessToken;
     //sessionStorage.setItem('token',accessToken);
@@ -74,6 +81,17 @@ export class AuthService {
     return null;
   }
 
+  public get codigoEmpresa(): string{
+    if(this._codigoEmpresa != null){
+      return this._codigoEmpresa;
+    }else if(this._codigoEmpresa == null && localStorage.getItem('codigo_empresa') != null) {
+      //this._token = sessionStorage.getItem('token');
+      this._usuario = JSON.parse(localStorage.getItem('codigo_empresa'));
+      return this._codigoEmpresa;
+    }
+    return null;
+  }
+
   isTokenExpirado(): boolean {
     let token = this.token;
 
@@ -100,6 +118,7 @@ export class AuthService {
   logout(): void{
     this._token = null;
     this._usuario = null;
+    this._codigoEmpresa = null;
     localStorage.clear()
     sessionStorage.clear();
   }

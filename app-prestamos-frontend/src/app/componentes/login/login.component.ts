@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(usuario).subscribe(response => {
       this.authService.guardarToken(response.access_token);
       this.authService.guardarUsuario(response.access_token);
+      this.authService.guardarCodigoEmpresa(response.access_token);
       this.router.navigate(['/principal']);
     },
     err=>{

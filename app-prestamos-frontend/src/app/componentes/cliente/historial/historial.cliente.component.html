@@ -70,7 +70,7 @@
           <mat-expansion-panel-header [ngClass]="{'bg-success': prestamo.activo}">
             <mat-panel-title class="text-uppercase">
               <mat-icon aria-hidden="false" aria-label="Example home icon" class="text-primary">credit_card</mat-icon>
-               {{prestamo.id}} - {{prestamo.fechaPrestamo | date:'d/mm/yyyy h:mm a'}}
+               {{prestamo.id}} - {{prestamo.fechaPrestamo | date:'short'}}
             </mat-panel-title>
             <mat-panel-description>
               {{prestamo.montoPrestamo * (1+(prestamo.porcentajePrestamo/100)) | currency:'':'symbol':'1.0-0'}}

@@ -14,4 +14,5 @@ export class Prestamo {
   ampliacion:boolean;
   saldoAnterior:number;
   valorAbono: number;
+  totalPagar: number;
 }

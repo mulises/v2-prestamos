@@ -130,26 +130,7 @@ export class FormCreditoComponent implements OnInit {
     })
   };
 
-  calcularCuotas(event: any):void {
-  
-    if(this.creditoForm.value.cantidadCuota === '') {
-      return;
-    }
-    
-
-    let miles = (this.creditoForm.value.montoPrestamo * (1+(this.creditoForm.value.cliente.ruta.porcentajePrestamo/100))) 
-                / this.creditoForm.value.cantidadCuota;
-    
-
-    let milesEntero = Math.floor(miles/1000);
-
-    let milesRedondeado = milesEntero * 1000;
-
-    if((miles-milesRedondeado)>0 ) {
-      milesRedondeado += 1000;
-    }
-    this.creditoForm.controls['valorCuota'].setValue(milesRedondeado);
-  }
+  calcularCuotas(event: any):void { }
 
   //Inicializa las variables del formulario
   inicializarVariablesFormularioCredito() {
@@ -162,7 +143,8 @@ export class FormCreditoComponent implements OnInit {
       ampliacion:false,
       saldoAnterior: 0,
       periodicidadCobro: 1,
-      valorAbono:0
+      valorAbono:0,
+      totalPagar:0
     });
   }
 

@@ -17,6 +17,7 @@ export class FormClienteComponent implements OnInit {
 
   clienteForm: FormGroup;
   cartera: Cartera;
+  codigEmpresa: string;
 
   constructor(private fb: FormBuilder, private clienteService: ClienteService, 
     private activatedRoute: ActivatedRoute, private carteraService: CarteraService) { }
@@ -24,6 +25,13 @@ export class FormClienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.inicializarFormularioCliente();
+    this.codigEmpresa =  localStorage.getItem('codigo_empresa');
+    if(this.codigEmpresa === "lanza") {
+      this.clienteForm.controls.enrutamiento.setValidators(Validators.required);
+      this.clienteForm.updateValueAndValidity();
+    }
+
+    
     let idCartera = this.activatedRoute.snapshot.paramMap.get("idCartera");
     if(idCartera) {
       this.carteraService.getCarteraByIdSinListCliente(+idCartera).subscribe(carteraResponse => {
@@ -78,7 +86,7 @@ export class FormClienteComponent implements OnInit {
   private inicializarFormularioCliente(): void{
     this.clienteForm = this.fb.group({
       id: null,
-      enrutamiento: ['', Validators.required],
+      enrutamiento: [''],
       entidad: this.fb.group({
         id: null,
         numeroIdentificacion: ['', Validators.required],
