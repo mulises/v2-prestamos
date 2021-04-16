@@ -73,7 +73,7 @@
                {{prestamo.id}} - {{prestamo.fechaPrestamo | date:'short'}}
             </mat-panel-title>
             <mat-panel-description>
-              {{prestamo.montoPrestamo * (1+(prestamo.porcentajePrestamo/100)) | currency:'':'symbol':'1.0-0'}}
+              {{prestamo.totalPagar | currency:'':'symbol':'1.0-0'}}
             </mat-panel-description>
           </mat-expansion-panel-header>
           <table class="table table-striped">
